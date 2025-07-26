@@ -1,0 +1,22 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Logs and outputs
+*.log
+*.out
+*.dat
+
+# MacOS system files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Output figures (optional – falls Du sie nicht versionieren willst)
+figures/
+
+# Local config files (optional)
+.env
