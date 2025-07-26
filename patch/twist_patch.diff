@@ -1,0 +1,41 @@
+diff --git a/source/background.c b/source/background.c
+index 1234567..abcdef0 100644
+--- a/source/background.c
++++ b/source/background.c
+@@ -1000,6 +1000,14 @@ int background_functions(...) {
+   rho_lambda = pba->Omega0_lambda * rho_crit_today;
+   pressure_lambda = -rho_lambda;
+ 
++  // ---- Twist Fluid (w = 1) ----
++  if (pba->has_twist == _TRUE_) {
++    rho_twist = pba->Omega0_twist * rho_crit_today / pow(a,6);
++    pressure_twist = rho_twist; // w = +1
++
++    *rho_tot += rho_twist;
++    *p_tot += pressure_twist;
++  }
+ 
+   return _SUCCESS_;
+ }
+
+@@ -2200,6 +2208,10 @@ int background_read_parameters(...) {
+   class_read_double("Omega_k",pba->Omega0_k);
+   class_read_double("Omega_fld",pba->Omega0_fld);
+ 
++  class_read_flag("use_twist_fluid",pba->has_twist);
++  class_read_double("Omega_twist",pba->Omega0_twist);
++  class_read_double("w_twist",pba->w_twist); // currently fixed to 1.0 internally
++
+   return _SUCCESS_;
+ }
+
+@@ -3100,6 +3112,9 @@ int background_init(...) {
+   pba->has_fld = _FALSE_;
+   pba->has_ncdm = _FALSE_;
+ 
++  pba->has_twist = _FALSE_;
++  pba->Omega0_twist = 0.0;
++  pba->w_twist = 1.0;
+ 
+   return _SUCCESS_;
+ }
