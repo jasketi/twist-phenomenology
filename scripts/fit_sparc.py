@@ -1,22 +1,31 @@
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 # --- Settings ---
-G = 4.302e-6  # Gravitational constant in (kpc * km^2) / (Msun * s^2)
 a0 = 1.2e-10  # Twist-predicted acceleration scale (m/s^2)
+input_file = "data/sparc_masses.csv"
 
-# Load SPARC data (replace path if needed)
-data = pd.read_csv("data/sparc_masses.csv")
+# Check for required data file
+if not os.path.exists(input_file):
+    raise FileNotFoundError(
+        f"\n❌ Data file '{input_file}' not found.\n\n"
+        "Please download SPARC rotation curve data from:\n"
+        "→ http://astroweb.cwru.edu/SPARC/\n\n"
+        "Then use the script 'scripts/prepare_sparc.py' to convert it to the required format.\n"
+    )
 
-# Expected columns: galaxy, radius_kpc, gbar_m_s2, gobs_m_s2
-# Group by galaxy
-for name, group in data.groupby("galaxy"):
+# Load preprocessed SPARC data
+df = pd.read_csv(input_file)
+
+# Group by galaxy and fit
+for name, group in df.groupby("galaxy"):
     r = group["radius_kpc"].values
     gbar = group["gbar_m_s2"].values
     gobs = group["gobs_m_s2"].values
 
-    # Twist prediction using fixed MOND-like interpolation
+    # Twist prediction
     gtwist = 0.5 * gbar + np.sqrt(0.25 * gbar**2 + gbar * a0)
 
     # Plot
