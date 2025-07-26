@@ -20,10 +20,15 @@ This repository provides scripts, parameters, and documentation for reproducing 
 
 ## 🧪 Quickstart (Manual)
 
-1. Patch and compile CLASS (see `patch/`)
+1. Patch and compile CLASS (see `patch/twist_patch.diff`)
 2. Run with `ini/twist_planck.ini`
 3. Fit SPARC data with `scripts/fit_sparc.py`
 4. Run QNM forecasts with `scripts/ringdown_forecast.py`
+
+→ To enable the twist fluid, apply the patch file `patch/twist_patch.diff`  
+   using `patch -p1 < patch/twist_patch.diff` inside the CLASS root directory.  
+   Alternatively, add the few lines shown there manually to `background.c`.
+
 
 ---
 
