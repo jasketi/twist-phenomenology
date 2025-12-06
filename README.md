@@ -47,7 +47,7 @@ This repository provides scripts, parameters, and documentation for reproducing 
 
 If you use this repository, please cite:
 
-> Ascher, J. (2025). *Twist-Topological Phenomenology of Cosmology and Astrophysics*. arXiv:YYYY.NNNNN
+> Ascher, J. (2025). *Twist-Topological Phenomenology of Cosmology and Astrophysics*. 
 
 ---
 
