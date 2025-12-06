@@ -3,7 +3,7 @@
 **Supporting material for the paper:**  
 **Jörg Ascher (2025)**  
 *“Twist-Topological Phenomenology of Cosmology and Astrophysics”*  
-→ [arXiv:YYYY.NNNNN](https://arxiv.org/abs/YYYY.NNNNN)
+
 
 ---
 
